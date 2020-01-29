@@ -1,10 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
+
 const Alert = ({ alerts }) =>
   alerts !== null &&
   alerts.length > 0 &&
   alerts.map(alert => (
-    <div key={alert.id} className={`alert-${alert.alertTypes} `}>
+    <div key={alert.id} className={` alert-${alert.alertTypes} `}>
       {alert.message}
     </div>
   ));

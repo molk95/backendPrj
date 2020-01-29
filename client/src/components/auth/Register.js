@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { setAlert } from "../../actions/alert";
-import axios from "axios";
+import { register } from "../../actions/auth";
 
-const Register = ({ setAlert }) => {
+const Register = ({ register }) => {
   const [formData, setFormData] = useState({
     firstname: "",
     lastname: "",
@@ -16,7 +16,7 @@ const Register = ({ setAlert }) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   const onSubmit = async e => {
     e.preventDefault();
-    console.log("SUCESS");
+    register({ firstname, lastname, email, password });
   };
   return (
     <section className="container">
@@ -78,4 +78,4 @@ const Register = ({ setAlert }) => {
   );
 };
 
-export default connect(null, { setAlert })(Register);
+export default connect(null, { setAlert, register })(Register);
