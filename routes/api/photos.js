@@ -1,9 +1,12 @@
 const express = require("express");
 const router = express.Router();
-const { check, validationResult } = require("express-validator");
 
 // auth
 const auth = require("../../middleware/auth");
+const {
+  validationPhoto,
+  validate
+} = require("../../middleware/checkValidator");
 // models
 const Photo = require("../../models/Photo");
 const Profile = require("../../models/Profile");
@@ -12,43 +15,25 @@ const User = require("../../models/User");
 // @route POST api/photos
 // @desc   Create a photo
 // @access Publis
-router.post(
-  "/",
-  [
-    auth,
+router.post("/", [auth, validationPhoto(), validate], async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select("-password");
 
-    [
-      check("image", "photo is required").notEmpty(),
-      check("text", "text is required").notEmpty(),
-      check("keyword", "keyword is required").notEmpty()
-    ]
-  ],
-  async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-     
-      return res.status(400).json({ errors: errors.array() });
-    }
-
-    try {
-      const user = await User.findById(req.user.id).select("-password");
-
-      const newPhoto = new Photo({
-        image: req.body.image,
-        text: req.body.text,
-        keyword: req.body.keyword,
-        name: user.name,
-        avatar: user.avatar,
-        user: req.user.id
-      });
-      const photo = await newPhoto.save();
-      res.json(photo);
-    } catch (err) {
-      console.error(err.message);
-      res.status(500).send("Server Error");
-    }
+    const newPhoto = new Photo({
+      image: req.body.image,
+      text: req.body.text,
+      keyword: req.body.keyword,
+      name: user.name,
+      avatar: user.avatar,
+      user: req.user.id
+    });
+    const photo = await newPhoto.save();
+    res.json(photo);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
   }
-);
+});
 
 // @route GET api/photos
 // @desc   GET all photos
