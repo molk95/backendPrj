@@ -26,48 +26,27 @@ router.post(
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
+     
       return res.status(400).json({ errors: errors.array() });
     }
-    const { image, text, keyword } = req.body;
 
-    // Build photo object
-    const photoFields = {};
-    photoFields.user = req.user.id;
-    if (req.body.image) photoFields.image = image;
-    if (req.body.text) photoFields.text = text;
-    if (req.body.keyword) photoFields.keyword = keyword;
-  
+    try {
+      const user = await User.findById(req.user.id).select("-password");
 
-    Photo.findOne({ user: req.user.id }).then(photo => {
-      if (photo) {
-        // Update
-        Photo.findOneAndUpdate(
-          { user: req.user.id },
-          { $set: photoFields },
-          { new: true }
-        ).then(photo => res.json(photo));
-      } else {
-        // const user = await User.findById(req.user.id).select("-password");
-        // Create
-
-        // Check if handle exists
-        Photo.findOne({ handle: photoFields.handle }).then(photo => {
-          // if (profile) {
-          //   errors.handle = "That handle already exists";
-          //   res.status(400).json(errors);
-          // }
-
-          // Save Photo
-
-          new Photo({ photoFields })
-            .save()
-            .then(photo => res.json(photo))
-            .catch(function(error) {
-              console.error(error);
-            });
-        });
-      }
-    });
+      const newPhoto = new Photo({
+        image: req.body.image,
+        text: req.body.text,
+        keyword: req.body.keyword,
+        name: user.name,
+        avatar: user.avatar,
+        user: req.user.id
+      });
+      const photo = await newPhoto.save();
+      res.json(photo);
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send("Server Error");
+    }
   }
 );
 

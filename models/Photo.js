@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 // Create Schema
-const PostSchema = new Schema({
+const PhotoSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
     ref: "users"
@@ -11,7 +11,7 @@ const PostSchema = new Schema({
     type: String,
     required: true
   },
-  x: {
+  image: {
     type: String,
     required: true
   },
@@ -39,4 +39,4 @@ const PostSchema = new Schema({
   }
 });
 
-module.exports = Post = mongoose.model("post", PostSchema);
+module.exports = Post = mongoose.model("photo", PhotoSchema);
