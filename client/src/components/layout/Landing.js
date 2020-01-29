@@ -6,10 +6,9 @@ import {Link} from 'react-router-dom'
     <section className="landing">
       <div className="dark-overlay">
         <div className="landing-inner">
-          <h1 className="x-large">Developer Students</h1>
+          <h1 className="x-large">For Photographers and Freelancers</h1>
           <p className="lead">
-            Create a student developer profile/portfolio, share posts and get help from
-            other students
+            Create a Photographer profile/portfolio, share photos and get inspired by others
           </p>
           <div className="buttons">
             <Link to="/register" className="btn btn-primary">

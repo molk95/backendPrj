@@ -9,19 +9,14 @@ const Register = ({ setAlert }) => {
     firstname: "",
     lastname: "",
     email: "",
-    password: "",
-    password2: ""
+    password: ""
   });
-  const { firstname, lastname, email, password, password2 } = formData;
+  const { firstname, lastname, email, password } = formData;
   const onChange = e =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
   const onSubmit = async e => {
     e.preventDefault();
-    if (password !== password2) {
-      setAlert("Password do not match", "danger");
-    } else {
-      console.log("SUCESS");
-    }
+    console.log("SUCESS");
   };
   return (
     <section className="container">
@@ -71,16 +66,6 @@ const Register = ({ setAlert }) => {
             name="password"
             minLength="8"
             value={password}
-            onChange={e => onChange(e)}
-          />
-        </div>
-        <div className="form-group">
-          <input
-            type="password"
-            placeholder="Confirm Password"
-            name="password2"
-            minLength="8"
-            value={password2}
             onChange={e => onChange(e)}
           />
         </div>
