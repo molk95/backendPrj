@@ -32,7 +32,7 @@ const Register = ({ register }) => {
             name="firstname"
             value={firstname}
             onChange={e => onChange(e)}
-            required
+            // required
           />
         </div>
         <div className="form-group">
@@ -42,7 +42,7 @@ const Register = ({ register }) => {
             name="lastname"
             value={lastname}
             onChange={e => onChange(e)}
-            required
+           // required
           />
         </div>
         <div className="form-group">
@@ -52,7 +52,7 @@ const Register = ({ register }) => {
             name="email"
             value={email}
             onChange={e => onChange(e)}
-            required
+           // required
           />
           <small className="form-text">
             This site uses Gravatar so if you want a profile image, use a
@@ -64,7 +64,7 @@ const Register = ({ register }) => {
             type="password"
             placeholder="Password"
             name="password"
-            minLength="8"
+            // minLength="8"
             value={password}
             onChange={e => onChange(e)}
           />

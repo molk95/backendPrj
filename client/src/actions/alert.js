@@ -1,18 +1,14 @@
-import uuid from "uuid";
-import { SET_ALERT, REMOVE_ALERT } from "./constants";
+import uuid from 'uuid';
+import { SET_ALERT, REMOVE_ALERT } from './constants';
 
-// the alert will have an {id, message}
-export const setAlert = (message, alertTypes) => dispatch => {
+export const setAlert = (msg, alertType, timeout = 3000) => dispatch => {
   const id = uuid.v4();
   dispatch({
     type: SET_ALERT,
-    payload: { message, alertTypes, id }
+    payload: { msg, alertType, id }
   });
 
-  setTimeout(()=>dispatch({
-      type: REMOVE_ALERT, 
-      payload: id
-  }),5000)
+  setTimeout(() => dispatch({ type: REMOVE_ALERT, payload: id }), timeout);
 };
 
 

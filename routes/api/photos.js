@@ -30,7 +30,7 @@ router.post("/", [auth, validationPhoto(), validate], async (req, res) => {
     const photo = await newPhoto.save();
     res.json(photo);
   } catch (err) {
-    console.error(err.message);
+    console.error(err.msg);
     res.status(500).send("Server Error");
   }
 });
@@ -44,7 +44,7 @@ router.get("/", auth, async (req, res) => {
     const photos = await Photo.find().sort({ date: -1 });
     res.json(photos);
   } catch (err) {
-    console.error(err.message);
+    console.error(err.msg);
     res.status(500).send("Server Error");
   }
 });
@@ -58,14 +58,14 @@ router.get("/:id", auth, async (req, res) => {
     const photo = await Photo.findById(req.params.id);
     // Check if photo exists
     if (!photo) {
-      return res.status(404).send({ message: "photo not found" });
+      return res.status(404).send({ msg: "photo not found" });
     }
 
     res.json(photo);
   } catch (err) {
-    console.error(err.message);
+    console.error(err.msg);
     if (err.kind === "ObjectId") {
-      return res.status(404).send({ message: "photo not found" });
+      return res.status(404).send({ msg: "photo not found" });
     }
     res.status(500).send("Server Error");
   }
@@ -80,19 +80,19 @@ router.delete("/:id", auth, async (req, res) => {
     const photo = await Photo.findById(req.params.id);
     // Check if photo exists
     if (!photo) {
-      return res.status(404).send({ message: "photo not found" });
+      return res.status(404).send({ msg: "photo not found" });
     }
     // Check user
     if (photo.user.toString() !== req.user.id) {
-      return res.status(401).send({ message: "User not authorized " });
+      return res.status(401).send({ msg: "User not authorized " });
     }
     await photo.remove();
 
-    res.json({ message: "photo removed" });
+    res.json({ msg: "photo removed" });
   } catch (err) {
-    console.error(err.message);
+    console.error(err.msg);
     if (err.kind === "ObjectId") {
-      return res.status(404).send({ message: "photo not found" });
+      return res.status(404).send({ msg: "photo not found" });
     }
     res.status(500).send("Server Error");
   }
@@ -109,7 +109,7 @@ router.put("/like/:id", auth, async (req, res) => {
       photo.likes.filter(like => like.user.toString() === req.user.id).length >
       0
     ) {
-      return res.json({ message: "User already liked this photo" });
+      return res.json({ msg: "User already liked this photo" });
     }
 
     // Add user id to likes array
@@ -118,7 +118,7 @@ router.put("/like/:id", auth, async (req, res) => {
     await photo.save();
     res.json(photo.likes);
   } catch (err) {
-    console.error(err.message);
+    console.error(err.msg);
     res.status(500).send("Server Error");
   }
 });
@@ -134,7 +134,7 @@ router.put("/unlike/:id", auth, async (req, res) => {
       photo.likes.filter(like => like.user.toString() === req.user.id)
         .length === 0
     ) {
-      return res.json({ message: "User has not liked this photo" });
+      return res.json({ msg: "User has not liked this photo" });
     }
 
     //   Get remove index
@@ -146,7 +146,7 @@ router.put("/unlike/:id", auth, async (req, res) => {
     await photo.save();
     res.json(photo.likes);
   } catch (err) {
-    console.error(err.message);
+    console.error(err.msg);
     res.status(500).send("Server Error");
   }
 });
@@ -178,7 +178,7 @@ router.put("/unlike/:id", auth, async (req, res) => {
 //       await post.save();
 //       res.json(post.comments);
 //     } catch (err) {
-//       console.error(err.message);
+//       console.error(err.msg);
 //       res.status(500).send("Server Error");
 //     }
 //   }
@@ -199,12 +199,12 @@ router.put("/unlike/:id", auth, async (req, res) => {
 
 //     // Make sure the comment does exist
 //     if (!comment) {
-//       return res.status(404).json({ message: "Comment does not exist" });
+//       return res.status(404).json({ msg: "Comment does not exist" });
 //     }
 
 //     // Check if it's the same User who posted the comment will deleted
 //     if (comment.user.toString() !== req.user.id) {
-//       return res.status(401).json({ message: "User not authorized" });
+//       return res.status(401).json({ msg: "User not authorized" });
 //     }
 
 //     //   Get remove index
@@ -216,7 +216,7 @@ router.put("/unlike/:id", auth, async (req, res) => {
 //     await post.save();
 //     res.json(post.comments);
 //   } catch (err) {
-//     console.error(err.message);
+//     console.error(err.msg);
 //     res.status(500).send("Server Error");
 //   }
 // });

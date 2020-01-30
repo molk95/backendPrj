@@ -22,7 +22,7 @@ router.post("/", validationRule(), validate, async (req, res) => {
     if (user) {
       return res
         .status(400)
-        .json({ errors: [{ message: "User already exists" }] });
+        .json({ errors: [{ msg: "User already exists" }] });
     }
 
     //Get users gravatar
@@ -61,7 +61,7 @@ router.post("/", validationRule(), validate, async (req, res) => {
       }
     );
   } catch (err) {
-    console.error(err.message);
+    console.error(err.msg);
     res.status(500).send("server error");
   }
 });
@@ -75,7 +75,7 @@ router.post("/", validationRule(), validate, async (req, res) => {
 //       ? await User.find({ role: req.query.role })
 //       : await User.find();
 //     if (!users) {
-//       return res.status(404).send({ message: 'no users were found' });
+//       return res.status(404).send({ msg: 'no users were found' });
 //     }
 //     return res.send(users);
 //   } catch (error) {
@@ -92,9 +92,9 @@ router.post("/", validationRule(), validate, async (req, res) => {
 //     if (!user)
 //       return res
 //         .status(404)
-//         .send({ message: 'The user with the given ID was not found.' });
+//         .send({ msg: 'The user with the given ID was not found.' });
 
-//     res.send({ message: 'user was removed' });
+//     res.send({ msg: 'user was removed' });
 //   } catch (error) {
 //     res.status(500).send('Server error');
 //   }

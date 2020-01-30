@@ -21,7 +21,7 @@ router.get("/", auth, async (req, res) => {
     const user = await User.findById(req.user.id).select("-password"); // minus the password
     res.json(user);
   } catch (err) {
-    console.error(err.message);
+    console.error(err.msg);
     res.status(500).send("Server Error");
   }
 });
@@ -38,7 +38,7 @@ router.post("/", validationLogin(), validate, async (req, res) => {
     if (!user) {
       return res
         .status(400)
-        .json({ errors: [{ message: "Invalid Credentials" }] });
+        .json({ errors: [{ msg: "Invalid Credentials" }] });
     }
 
     // Match the email and password
@@ -46,7 +46,7 @@ router.post("/", validationLogin(), validate, async (req, res) => {
     if (!isMatch) {
       return res
         .status(400)
-        .json({ errors: [{ message: "Invalid Credentials" }] });
+        .json({ errors: [{ msg: "Invalid Credentials" }] });
     }
 
     //Create (the payload) and Return jsonwebtoken
@@ -65,7 +65,7 @@ router.post("/", validationLogin(), validate, async (req, res) => {
       }
     );
   } catch (err) {
-    console.error(err.message);
+    console.error(err.msg);
     res.status(500).send("server error");
   }
 });

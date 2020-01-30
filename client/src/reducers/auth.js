@@ -2,7 +2,11 @@ import {
   REGISTER_SUCCESS,
   REGISTER_FAILED,
   USER_LOADED,
-  AUTH_ERROR
+  AUTH_ERROR,
+  LOGIN_SUCCESS,
+  LOGIN_FAILED,
+  LOGOUT_SUCCESS
+
 } from "../actions/constants";
 
 const initialState = {
@@ -12,8 +16,9 @@ const initialState = {
   user: null
 };
 
-export default function(state = initialState, action, payload) {
-  switch (action.type) {
+export default function(state = initialState, action) {
+  const { type, payload } = action;
+  switch (type) {
     case USER_LOADED:
       return {
         ...state,
@@ -23,7 +28,8 @@ export default function(state = initialState, action, payload) {
       };
 
     case REGISTER_SUCCESS:
-      localStorage.setItem("token", action.payload.token);
+    case LOGIN_SUCCESS:
+      localStorage.setItem("token", payload.token);
       return {
         ...state,
         ...payload,
@@ -31,6 +37,8 @@ export default function(state = initialState, action, payload) {
         loading: false
       };
     case REGISTER_FAILED:
+    case LOGIN_FAILED:
+    case LOGOUT_SUCCESS:
     case AUTH_ERROR:
       localStorage.removeItem("token");
       return {

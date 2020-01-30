@@ -21,11 +21,11 @@ router.get("/current", auth, async (req, res) => {
 
     // check if there's no profile
     if (!profile) {
-      return res.status(400).json({ message: "This profile doesn't exist" });
+      return res.status(400).json({ msg: "This profile doesn't exist" });
     }
     res.json(profile);
   } catch (err) {
-    console.error(err.message);
+    console.error(err.msg);
     res.status(500).send("Server Error");
   }
 });
@@ -91,7 +91,7 @@ router.get("/", async (req, res) => {
     const profiles = await Profile.find().populate("user", ["name", "avatar"]);
     res.json(profiles);
   } catch (err) {
-    console.error(err.message);
+    console.error(err.msg);
     res.status(500).send("Server Error");
   }
 });
@@ -105,12 +105,12 @@ router.get("/user/:user_id", async (req, res) => {
       user: req.params.user_id
     }).populate("user", ["name", "avatar"]);
     if (!profile)
-      return res.status(400).json({ message: "Profile not found!" });
+      return res.status(400).json({ msg: "Profile not found!" });
     res.json(profile);
   } catch (err) {
-    console.error(err.message);
+    console.error(err.msg);
     if (err.kind == "ObjectId") {
-      return res.status(400).json({ message: "Profile not found!" });
+      return res.status(400).json({ msg: "Profile not found!" });
     }
     res.status(500).send("Server Error");
   }
@@ -127,9 +127,9 @@ router.delete("/", auth, async (req, res) => {
     // Remove user
     await User.findOneAndRemove({ _id: req.user.id });
 
-    res.json({ message: "User Deleted" });
+    res.json({ msg: "User Deleted" });
   } catch (err) {
-    console.error(err.message);
+    console.error(err.msg);
     res.status(500).send("Server Error");
   }
 });

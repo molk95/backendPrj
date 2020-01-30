@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { login } from "../../actions/auth";
+import { setAlert } from "../../actions/alert";
 
-
-const Login = () => {
+const Login = ({ login }) => {
   const [formData, setFormData] = useState({
     email: "",
     password: ""
@@ -12,8 +14,7 @@ const Login = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   const onSubmit = async e => {
     e.preventDefault();
-
-    console.log("SUCESS");
+    login(email, password);
   };
   return (
     <section className="container">
@@ -22,7 +23,6 @@ const Login = () => {
         <i className="fas fa-user"></i> Sign Into Your Account
       </p>
       <form className="form" onSubmit={e => onSubmit(e)}>
-      
         <div className="form-group">
           <input
             type="email"
@@ -30,21 +30,20 @@ const Login = () => {
             name="email"
             value={email}
             onChange={e => onChange(e)}
-            required
+            // required
           />
-         
         </div>
         <div className="form-group">
           <input
             type="password"
             placeholder="Password"
             name="password"
-            minLength="8"
+            // minLength="8"
             value={password}
             onChange={e => onChange(e)}
           />
         </div>
-    
+
         <input type="submit" className="btn btn-primary" value="Login" />
       </form>
       <p className="my-1">
@@ -54,4 +53,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default connect(null, { setAlert, login })(Login);
