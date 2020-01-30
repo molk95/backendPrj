@@ -1,17 +1,17 @@
 {
-  "name": "devstudent",
+  "name": "freetaswira",
   "version": "1.0.0",
   "description": "social network",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "server": "nodemon server.js",
+    "server": "nodemon server.js --ignore './client/'",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run client\" \"npm run server\""
   },
   "repository": {
     "type": "git",
-    "url": "devStudent"
+    "url": "freetaswira"
   },
   "author": "M&S",
   "license": "MIT",
