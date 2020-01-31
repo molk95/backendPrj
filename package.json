@@ -1,7 +1,7 @@
 {
   "name": "freetaswira",
   "version": "1.0.0",
-  "description": "social network",
+  "description": "photographers & freelancers photoG",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",

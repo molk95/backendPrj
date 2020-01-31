@@ -1,4 +1,4 @@
 {
-  "mongoURI": "mongodb+srv://freetaswira123:freetaswira123@freetaswira-0lhbo.mongodb.net/freetaswireDB?retryWrites=true&w=majority",
+  "mongoURI": "mongodb://localhost:27017/taswiraDB",
   "jwtSecret": "mySecret"
 }
