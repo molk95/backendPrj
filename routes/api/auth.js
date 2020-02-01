@@ -38,7 +38,7 @@ router.post("/", validationLogin(), validate, async (req, res) => {
     if (!user) {
       return res
         .status(400)
-        .json({ errors: [{ msg: "Invalid Credentials" }] });
+        .json({ errors: [{ msg: "Invalid Password or Email!" }] });
     }
 
     // Match the email and password
@@ -46,7 +46,7 @@ router.post("/", validationLogin(), validate, async (req, res) => {
     if (!isMatch) {
       return res
         .status(400)
-        .json({ errors: [{ msg: "Invalid Credentials" }] });
+        .json({ errors: [{ msg: "Invalid Password or Email!" }] });
     }
 
     //Create (the payload) and Return jsonwebtoken

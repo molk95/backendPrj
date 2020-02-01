@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link , Redirect} from "react-router-dom";
 import { setAlert } from "../../actions/alert";
 import { register } from "../../actions/auth";
 
-const Register = ({ register }) => {
+const Register = ({ register,isAuthenticated }) => {
   const [formData, setFormData] = useState({
     firstname: "",
     lastname: "",
@@ -18,6 +18,10 @@ const Register = ({ register }) => {
     e.preventDefault();
     register({ firstname, lastname, email, password });
   };
+  // Redirect if logged in
+  if (isAuthenticated) {
+    return <Redirect to='/profileForm' />
+  }
   return (
     <section className="container">
       <h1 className="large text-primary">Sign Up</h1>
@@ -77,5 +81,8 @@ const Register = ({ register }) => {
     </section>
   );
 };
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+});
 
-export default connect(null, { setAlert, register })(Register);
+export default connect(mapStateToProps, { setAlert, register })(Register);
