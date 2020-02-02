@@ -1,14 +1,20 @@
 import React from "react";
-import {Link} from 'react-router-dom'
+import { connect } from "react-redux";
+import { Link, Redirect } from "react-router-dom";
 
- const Landing = () => {
+const Landing = ({ isAuthenticated }) => {
+  // Redirect if logged in
+  if (isAuthenticated) {
+    return <Redirect to="/dashboard" />;
+  }
   return (
     <section className="landing">
       <div className="dark-overlay">
         <div className="landing-inner">
           <h1 className="x-large">For Photographers and Freelancers</h1>
           <p className="lead">
-            Create a Photographer profile/portfolio, share photos and get inspired by others
+            Create a Photographer profile/portfolio, share photos and get
+            inspired by others
           </p>
           <div className="buttons">
             <Link to="/register" className="btn btn-primary">
@@ -23,4 +29,9 @@ import {Link} from 'react-router-dom'
     </section>
   );
 };
-export default Landing;
+
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(mapStateToProps)(Landing);

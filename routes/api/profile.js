@@ -13,7 +13,7 @@ const User = require("../../models/User");
 // @route GET api/users/profile/current
 // @desc   Get current  user profile
 // @access Private
-router.get("/current", auth, async (req, res) => {
+router.get("/me", auth, async (req, res) => {
   try {
     const profile = await Profile.findOne({
       user: req.user.id
@@ -51,6 +51,13 @@ router.post("/", auth, async (req, res) => {
   if (req.body.location) profileFields.location = location;
   if (req.body.bio) profileFields.bio = bio;
  
+// Social
+profileFields.social = {};
+if (req.body.youtube) profileFields.social.youtube = req.body.youtube;
+if (req.body.twitter) profileFields.social.twitter = req.body.twitter;
+if (req.body.facebook) profileFields.social.facebook = req.body.facebook;
+if (req.body.linkedin) profileFields.social.linkedin = req.body.linkedin;
+if (req.body.instagram) profileFields.social.instagram = req.body.instagram;
 
 
   Profile.findOne({ user: req.user.id }).then(profile => {
@@ -116,6 +123,10 @@ router.get("/user/:user_id", async (req, res) => {
   }
 });
 
+
+
+
+
 // @route DELETE api/profile
 // @desc   Delete profile, user and photo
 // @access Private
@@ -133,5 +144,7 @@ router.delete("/", auth, async (req, res) => {
     res.status(500).send("Server Error");
   }
 });
+
+
 
 module.exports = router;

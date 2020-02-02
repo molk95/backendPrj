@@ -1,33 +1,12 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { logout } from "../../actions/auth";
-const Navbar = ({ auth: { isAuthenticated, loading }, logout
+const Navbar = ({
+  auth: { isAuthenticated, loading, user },
+  logout
   // , user
- }) => {
-  const authUserLinks = (
-    <ul>
-      <li>
-        <a onClick={logout} href="#!">
-          <i className="fas fa-sign-out-alt" />{" "}
-          <span className="hide-sm">Logout</span>
-        </a>
-      </li>
-    </ul>
-  );
-  // const adminLinks = (
-  //   <ul>
-  //     <li>
-  //       <Link to="/profiles">Photographers/Freelancers</Link>
-  //     </li>
-  //     <li>
-  //       <a onClick={logout} href="#!">
-  //         <i className="fas fa-sign-out-alt" />{" "}
-  //         <span className="hide-sm">Logout</span>
-  //       </a>
-  //     </li>
-  //   </ul>
-  // );
+}, firstname) => {
   const guestLinks = (
     <ul>
       <li>
@@ -38,23 +17,62 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout
       </li>
     </ul>
   );
+  const authLinks = (
+   
+       <ul>
+      <li>
+        <Link to='/profiles'>Photographers|Freelancers</Link>
+      </li>
+      <li></li>
+      <li>
+        <Link to="/photos">
+        <i class="fas fa-image"></i>{' '}
+        <span className='hide-sm'> Photos</span></Link>
+      </li>
+      <li>
+      <Link to='/profile'>
+          <i className='fas fa-user' />{' '}
+          <span className='hide-sm'>
+            {user && user.firstname}
+          </span>
+        </Link>
+      </li>
+      <li>
+        <a onClick={logout} href="#!">
+          <i className="fas fa-sign-out-alt" />{" "}
+          <span className="hide-sm">Logout</span>
+        </a>
+      </li>
+    </ul>
+  );
+
+  // const adminLinks = (
+  //   <ul>
+  //     <li>
+  //       <Link to="/profiles">Photographers|Freelancers</Link>
+  //     </li>
+  //     <li>
+  //       <a onClick={logout} href="#!">
+  //         <i className="fas fa-sign-out-alt" />{" "}
+  //         <span className="hide-sm">Logout</span>
+  //       </a>
+  //     </li>
+  //   </ul>
+  // );
+
   return (
     <nav className="navbar bg-dark">
       <h1>
         <Link to="/">
-          <i className="fas fa-camera-retro"></i> FreeTaswira
+          <i className="fas fa-camera-retro" /> FreeTaswira
         </Link>
       </h1>
-      {!loading && (
-        <Fragment>
-          {/* {isAuthenticated && user.role === "admin"
-            ? adminLinks
-            : isAuthenticated && user.role === "user"
-            ? authUserLinks
-            : guestLinks} */}
-            {isAuthenticated?authUserLinks:guestLinks}
-        </Fragment>
-      )}
+      <input
+      
+      />
+      {/* {!loading && ( */}
+      {isAuthenticated ? authLinks : guestLinks}
+      {/* )} */}
     </nav>
   );
 };
@@ -64,3 +82,9 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps, { logout })(Navbar);
+
+// {isAuthenticated && user.role === "admin"
+// ? adminLinks
+// : isAuthenticated && user.role === "user"
+// ? authUserLinks
+// : guestLinks}

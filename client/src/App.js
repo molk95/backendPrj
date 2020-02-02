@@ -5,6 +5,11 @@ import Landing from "./components/layout/Landing";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
 import Alert from "./components/layout/Alert";
+import Dashboard from "./components/dashboard/Dashboard";
+import CreateProfile from "./components/profile-form/CreateProfile";
+import EditProfile from "./components/profile-form/EditProfile";
+import Profiles from "./components/profiles/Profiles";
+import PrivateRoute from "./components/routing/PrivateRoute";
 import "./App.css";
 import store from "./store/store";
 import { loadUser } from "./actions/auth";
@@ -28,9 +33,18 @@ const App = () => {
           <Switch>
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
+            <PrivateRoute exact path="/dashboard" component={Dashboard} />
+            <PrivateRoute
+              exact
+              path="/create-profile"
+              component={CreateProfile}
+            />
+            <PrivateRoute exact path="/edit-profile" component={EditProfile} />
+            <PrivateRoute exact path="/profiles" component={Profiles} />
+            <PrivateRoute exact path="/profiles" component={Profiles} />
           </Switch>
         </section>
-        </Fragment>
+      </Fragment>
     </Router>
   );
 };

@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { login } from "../../actions/auth";
 import { setAlert } from "../../actions/alert";
 
-const Login = ({ login,isAuthenticated }) => {
+const Login = ({ login, isAuthenticated }) => {
   const [formData, setFormData] = useState({
     email: "",
     password: ""
@@ -18,7 +18,7 @@ const Login = ({ login,isAuthenticated }) => {
   };
   // Redirect if logged in
   if (isAuthenticated) {
-    return <Redirect to='/profile' />
+    return <Redirect to="/dashboard" />;
   }
   return (
     <section className="container">

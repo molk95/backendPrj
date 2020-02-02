@@ -5,7 +5,7 @@
   --light-color: #f4f4f4;
   --danger-color: #dc3545;
   --success-color: #28a745;
-  --warning-color: #f0ad4e ;
+  --warning-color: #fda50f ;
 }
 
 * {
@@ -16,15 +16,16 @@
 
 body {
   font-family: 'Raleway', sans-serif;
-  font-size: 1rem;
+  font-size: 1.1rem;
   line-height: 1.6;
   background-color: #fff;
   color: #333;
 }
 
 a {
-  color: var(--primary-color);
+  color: var(--warning-color);
   text-decoration: none;
+  /* font-weight: 600; */
 }
 
 ul {
@@ -47,7 +48,7 @@ img {
 
 /* Text Styles*/
 .x-large {
-  font-size: 4rem;
+  font-size: 3.7rem;
   line-height: 1.2;
   margin-bottom: 1rem;
 }
@@ -68,7 +69,7 @@ img {
 }
 
 .text-primary {
-  color: var(--primary-color);
+  color: var(--warning-color);
 }
 
 .text-dark {
@@ -132,7 +133,7 @@ img {
   background: var(--light-color);
   color: #333;
   padding: 0.4rem 1.3rem;
-  font-size: 1rem;
+  font-size: 1.1rem;
   border: none;
   cursor: pointer;
   margin-right: 0.5rem;
@@ -161,7 +162,7 @@ img {
 .bg-primary,
 .badge-primary,
 .alert-primary {
-  background: var(--primary-color);
+  background: var(--warning-color);
   color: #fff;
 }
 
@@ -177,7 +178,7 @@ img {
 .bg-dark,
 .badge-dark,
 .alert-dark {
-  background: var(--dark-color);
+  background: var(--warning-color);
   color: #fff;
 }
 
@@ -309,7 +310,7 @@ button {
   z-index: 1;
   width: 100%;
   top: 0;
-  border-bottom: solid 1px var(--primary-color);
+  border-bottom: solid 1px var(--warning-color);
   opacity: 0.9;
 }
 
@@ -324,7 +325,7 @@ button {
 }
 
 .navbar a:hover {
-  color: var(--primary-color);
+  color: var(--dark-color);
 }
 
 .navbar .welcome span {
