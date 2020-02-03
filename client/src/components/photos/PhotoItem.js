@@ -57,7 +57,7 @@ const PhotoItem = ({
             <i className="fas fa-thumbs-down" />
           </button>
           <Link to={`/photos/${_id}`} className="btn btn-primary">
-            <span className="comment-count">{keyword}</span>
+            <span >{keyword}</span>
           </Link>
           {!auth.loading && user === auth.user._id && (
             <button

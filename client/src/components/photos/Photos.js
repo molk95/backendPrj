@@ -1,7 +1,7 @@
 import React, { useEffect, Fragment } from "react";
 import { connect } from "react-redux";
 import Spinner from "../layout/Spinner/Spinner";
-import PhotoForm from "./PhotoForm";
+
 import PhotoItem from "./PhotoItem";
 import { getPhotos } from "../../actions/photo";
 const Photos = ({ getPhotos, photo: { photos, loading } }) => {
@@ -17,7 +17,7 @@ const Photos = ({ getPhotos, photo: { photos, loading } }) => {
       <p className="lead">
         <i className="fas fa-user" /> Welcome to the community
       </p>
-      <PhotoForm />
+      
       <div className="posts">
         {photos.map(photo => (
           <PhotoItem key={photo._id} photo={photo} />

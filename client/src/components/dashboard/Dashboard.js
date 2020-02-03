@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import Spinner from "../layout/Spinner/Spinner";
 import DashboardActions from "./DashboardActions";
+import PhotoForm from "../photos/PhotoForm";
 import { getCurrentProfile, deleteAccount } from "../../actions/profile";
 
 const Dashboard = ({
@@ -27,6 +28,7 @@ const Dashboard = ({
       {profile !== null ? (
         <Fragment>
           <DashboardActions />
+          <PhotoForm />
           <div className="my-2">
             <button className="btn btn-danger" onClick={() => deleteAccount()}>
               <i className="fas fa-user" /> Delete My Account
