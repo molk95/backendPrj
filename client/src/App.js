@@ -10,6 +10,7 @@ import CreateProfile from "./components/profile-form/CreateProfile";
 import EditProfile from "./components/profile-form/EditProfile";
 import Profiles from "./components/profiles/Profiles";
 import Profile from "./components/profile/Profile";
+import Photos from "./components/photos/Photos";
 import PrivateRoute from "./components/routing/PrivateRoute";
 import "./App.css";
 import store from "./store/store";
@@ -35,6 +36,7 @@ const App = () => {
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/profiles" component={Profiles} />
+            <Route exact path="/photos" component={Photos} />
             <Route exact path="/profile/:id" component={Profile} />
             <PrivateRoute exact path="/dashboard" component={Dashboard} />
             <PrivateRoute
