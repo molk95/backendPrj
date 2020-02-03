@@ -95,7 +95,7 @@ if (req.body.instagram) profileFields.social.instagram = req.body.instagram;
 // @access Public
 router.get("/", async (req, res) => {
   try {
-    const profiles = await Profile.find().populate("user", ["name", "avatar"]);
+    const profiles = await Profile.find().populate("user", ["firstname","lastname", "avatar"]);
     res.json(profiles);
   } catch (err) {
     console.error(err.msg);
@@ -110,7 +110,7 @@ router.get("/user/:user_id", async (req, res) => {
   try {
     const profile = await Profile.findOne({
       user: req.params.user_id
-    }).populate("user", ["name", "avatar"]);
+    }).populate("user", ["firstname","lastname", "avatar"]);
     if (!profile)
       return res.status(400).json({ msg: "Profile not found!" });
     res.json(profile);

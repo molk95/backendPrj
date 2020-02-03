@@ -2,11 +2,14 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { logout } from "../../actions/auth";
-const Navbar = ({
-  auth: { isAuthenticated, loading, user },
-  logout
-  // , user
-}, firstname) => {
+const Navbar = (
+  {
+    auth: { isAuthenticated, loading, user },
+    logout
+    // , user
+  },
+  firstname
+) => {
   const guestLinks = (
     <ul>
       <li>
@@ -18,23 +21,20 @@ const Navbar = ({
     </ul>
   );
   const authLinks = (
-   
-       <ul>
+    <ul>
       <li>
-        <Link to='/profiles'>Photographers|Freelancers</Link>
+        <Link to="/profiles">Photographers|Freelancers</Link>
       </li>
       <li></li>
       <li>
         <Link to="/photos">
-        <i class="fas fa-image"></i>{' '}
-        <span className='hide-sm'> Photos</span></Link>
+          <i class="fas fa-image"></i> <span className="hide-sm"> Photos</span>
+        </Link>
       </li>
       <li>
-      <Link to='/profile'>
-          <i className='fas fa-user' />{' '}
-          <span className='hide-sm'>
-            {user && user.firstname}
-          </span>
+        <Link to="/dashboard">
+          <i className="fas fa-user" />{" "}
+          <span className="hide-sm">{user && user.firstname}</span>
         </Link>
       </li>
       <li>
@@ -67,9 +67,7 @@ const Navbar = ({
           <i className="fas fa-camera-retro" /> FreeTaswira
         </Link>
       </h1>
-      <input
-      
-      />
+      <input />
       {/* {!loading && ( */}
       {isAuthenticated ? authLinks : guestLinks}
       {/* )} */}

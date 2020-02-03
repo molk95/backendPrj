@@ -17,7 +17,7 @@ const ProfileItem = ({
           {firstname} {lastname}
         </h2>
         <p>
-          <span> at {website}</span>}
+          <span> at {website}</span>
         </p>
         <p className="my-1">{location}</p>
         <Link to={`/profile/${_id}`} className="btn btn-primary">
@@ -28,7 +28,6 @@ const ProfileItem = ({
         <li className="text-primary">{bio}</li>
       </ul>
     </div>
-  );
-};
+  )};
 
 export default ProfileItem;
