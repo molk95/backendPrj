@@ -8,6 +8,9 @@ import {
   ADD_PHOTO
 } from "../actions/constants";
 import { setAlert } from "./alert";
+
+
+
 // Get photos
 export const getPhotos = () => async dispatch => {
   try {
@@ -53,7 +56,7 @@ export const removeLike = id => async dispatch => {
     });
   } catch (err) {
     dispatch({
-      type: POST_ERROR,
+      type: PHOTO_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status }
     });
   }

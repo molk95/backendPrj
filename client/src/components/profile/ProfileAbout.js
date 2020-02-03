@@ -15,8 +15,8 @@ const ProfileAbout = ({
         <p>{bio}</p>
         <div className="line" />
       </Fragment>
+    
     )}
-    )
   </div>
   </Fragment>
 )
