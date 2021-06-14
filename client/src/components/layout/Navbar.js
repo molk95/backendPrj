@@ -46,19 +46,7 @@ const Navbar = (
     </ul>
   );
 
-  // const adminLinks = (
-  //   <ul>
-  //     <li>
-  //       <Link to="/profiles">Photographers|Freelancers</Link>
-  //     </li>
-  //     <li>
-  //       <a onClick={logout} href="#!">
-  //         <i className="fas fa-sign-out-alt" />{" "}
-  //         <span className="hide-sm">Logout</span>
-  //       </a>
-  //     </li>
-  //   </ul>
-  // );
+  
 
   return (
     <nav className="navbar bg-dark">
@@ -67,7 +55,7 @@ const Navbar = (
           <i className="fas fa-camera-retro" /> FreeTaswira
         </Link>
       </h1>
-      <input />
+      
       {/* {!loading && ( */}
       {isAuthenticated ? authLinks : guestLinks}
       {/* )} */}
